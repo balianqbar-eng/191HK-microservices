@@ -1,0 +1,10 @@
+target/
+.env
+*.key
+*.pem
+credentials*
+*secret*
+.idea/
+*.iml
+.vscode/
+.DS_Store
