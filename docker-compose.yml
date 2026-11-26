@@ -1,7 +1,7 @@
 # 預設密碼只供本機開發；正式環境一律用 .env 覆寫（見 .env.example）
 services:
   mysql:
-    image: mysql:8.4
+    build: ./db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-dev-root-pw}
       BOOKING_DB_PASSWORD: ${BOOKING_DB_PASSWORD:-dev-booking-pw}
@@ -9,7 +9,6 @@ services:
       TZ: Asia/Taipei
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./db/init:/docker-entrypoint-initdb.d:ro
     ports:
       - "127.0.0.1:3307:3306"
     healthcheck:
