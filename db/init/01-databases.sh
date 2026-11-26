@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+mysql -uroot -p"$MYSQL_ROOT_PASSWORD" <<SQL
+CREATE DATABASE IF NOT EXISTS booking_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS dispatch_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'booking'@'%' IDENTIFIED BY '${BOOKING_DB_PASSWORD}';
+CREATE USER IF NOT EXISTS 'dispatch'@'%' IDENTIFIED BY '${DISPATCH_DB_PASSWORD}';
+GRANT ALL PRIVILEGES ON booking_db.* TO 'booking'@'%';
+GRANT ALL PRIVILEGES ON dispatch_db.* TO 'dispatch'@'%';
+FLUSH PRIVILEGES;
+SQL
